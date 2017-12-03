@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { app as firebase } from '../config/firebase'
 
 export default (WrappedComponent) => {
   class RequireAuth extends Component {
@@ -8,14 +9,20 @@ export default (WrappedComponent) => {
     }
 
     componentDidMount(){
-      setTimeout(()=>{
-        const isLogin = false
-        if (isLogin === false) {
+      firebase.auth().onAuthStateChanged((user)=>{
+        console.log(user);
+        if (user) {
+          // User is signed in.
+          this.setState({
+            isLogin : true
+          })
+        } else {
           this.props.history.push({
             pathname: '/login'
           });
+          // No user is signed in.
         }
-      }, 2000);
+      });
     }
 
     render(){

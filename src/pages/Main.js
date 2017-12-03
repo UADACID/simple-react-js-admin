@@ -9,16 +9,6 @@ import Register from './unauthorized/Register'
 
 export default class Main extends Component {
 
-  // state = {
-  //   isLogin : false
-  // }
-  //
-  // componentDidMount(){
-  //   this.props.history.push({
-  //     pathname: '/login'
-  //   });
-  // }
-
   render() {
     return (
       <Switch>
